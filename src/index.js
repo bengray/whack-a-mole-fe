@@ -13,7 +13,8 @@ const store = configureStore(
             {
                 time: "9",
                 displayName: "9:00",
-                scheduled: "false"
+                scheduled: "false",
+                information: ""
             },
             {
                 time: "10",

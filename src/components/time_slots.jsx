@@ -4,13 +4,6 @@ import { fetchItems, setItem } from '../actions/items';
 import { ButtonGroup, Button } from 'react-bootstrap';
 
 class TimeSlots extends Component {
-    constructor() {
-        super();
-    }
-
-    componentDidUpdate() {
-        console.log(this.props.items);
-    }
 
     render() {
         const timeSlots = this.props.items;
