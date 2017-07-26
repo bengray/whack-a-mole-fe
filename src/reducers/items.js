@@ -5,12 +5,15 @@ export function items(state = [], action) {
         case 'ITEMS_FETCH':
             return action.items;
         case 'ITEM_SET':
-            return Object.assign([], state, {
-                time: action.payload.time,
-                displayName: action.payload.displayName,
-                scheduled: "true"
+
+            const updatedItems = state.map(item => {
+                if(item.time === action.payload.time) {
+                    return {...item, ...action.payload}
+                }
+                return item;
             });
 
+            return updatedItems;
         default:
             return state;
     }

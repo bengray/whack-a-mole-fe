@@ -8,6 +8,10 @@ export function fetchItems(items) {
 export function setItem(item) {
     return {
         type: 'ITEM_SET',
-        payload: item
+        payload: {
+            displayName: item.displayName,
+            scheduled: "true",
+            time: item.time
+        }
     };
 }
