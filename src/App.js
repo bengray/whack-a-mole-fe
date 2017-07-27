@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import TimeSlots from './components/time_slots';
+import MyModal from './components/modal';
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
             To get started, click on a time slot.
             </p>
             <TimeSlots/>
+            <MyModal/>
         </div>
         );
     }

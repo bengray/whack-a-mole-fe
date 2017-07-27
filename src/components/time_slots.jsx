@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchItems, setItem } from '../actions/items';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { fetchItems, openModal, closeModal, setSelectedItem } from '../actions/index';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class TimeSlots extends Component {
+    constructor() {
+        super();
+    }
+
+    handleSelectItem(item) {
+        this.props.setSelectedItem(item);
+        this.props.openModal();
+    }
 
     render() {
-        const timeSlots = this.props.items;
-
         return (
             <div>
-                <ButtonGroup vertical>
+                <ListGroup className="col-xs-2 col-xs-offset-5">
                     {this.props.items.map((item) => (
-                        <Button className="time_slot_button"
-                                bsStyle={item.scheduled === "true" ? "danger" : "default"}
-                                onClick={() => this.props.setItem(item)}
+                        <ListGroupItem className="time_slot_button"
+                                       bsStyle={item.scheduled === "true" ? "danger" : "default"}
+                                       onClick={() => this.handleSelectItem(item)}
                         >
                             {item.displayName}
-                        </Button>
+                        </ListGroupItem>
                     ))}
-                </ButtonGroup>
-
+                </ListGroup>
             </div>
         );
     }
@@ -35,7 +40,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchItems: () => dispatch(fetchItems()),
-        setItem: (item) => dispatch(setItem(item))
+        openModal: () => dispatch(openModal()),
+        closeModal: () => dispatch(closeModal()),
+        setSelectedItem: (item) => dispatch(setSelectedItem(item))
     };
 };
 
