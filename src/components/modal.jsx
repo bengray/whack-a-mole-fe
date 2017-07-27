@@ -31,7 +31,7 @@ class MyModal extends Component {
             });
             this.props.closeModal();
         } else {
-            alert("Please enter a valid phone number:\n(dashes required) \n ###-###-####");
+            alert("Please enter a valid phone number: \n(dashes required) \nexample: 555-567-7890");
         }
 
 
@@ -71,6 +71,7 @@ class MyModal extends Component {
                     <input ref="phone"
                            className="col-xs-12"
                            placeholder="###-###-####"
+                           maxLength={12}
                            defaultValue={this.props.selectedItem.phone} />
                     <br />
                     <br />
