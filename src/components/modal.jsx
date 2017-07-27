@@ -55,7 +55,7 @@ class MyModal extends Component {
                    onHide={this.handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                       Currently setting an appointment for {this.props.selectedItem.displayName}
+                       Appointment for {this.props.selectedItem.displayName}
                     </Modal.Title>
                 </Modal.Header>
 
