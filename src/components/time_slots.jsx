@@ -12,7 +12,7 @@ class TimeSlots extends Component {
     render() {
         return (
             <div>
-                <ListGroup className="col-xs-2 col-xs-offset-5">
+                <ListGroup className="col-xs-6 col-md-2 col-xs-offset-3 col-md-offset-5">
                     {this.props.items.map((item, index) => (
                         <ListGroupItem key={index}
                                        className="time_slot_button"
