@@ -19,7 +19,7 @@ class MyModal extends Component {
     handleSave() {
         const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         const phoneInput = ReactDOM.findDOMNode(this.refs.phone).value;
-        const nameInput = ReactDOM.findDOMNode(this.refs.name).value
+        const nameInput = ReactDOM.findDOMNode(this.refs.name).value;
 
         if(phoneInput.match(phoneRegex)) {
             this.props.setItem({
