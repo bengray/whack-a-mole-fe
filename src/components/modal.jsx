@@ -10,6 +10,7 @@ class MyModal extends Component {
 
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleClose() {
@@ -27,9 +28,21 @@ class MyModal extends Component {
         this.props.closeModal();
     }
 
+    handleDelete() {
+        this.props.setItem({
+            name: "",
+            phone: "",
+            time: this.props.selectedItem.time,
+            displayName: this.props.selectedItem.displayName,
+            scheduled: "false",
+        });
+        this.props.closeModal();
+    }
+
     render() {
         return (
-            <Modal show={this.props.showModal} onHide={this.handleClose}>
+            <Modal show={this.props.showModal}
+                   onHide={this.handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {this.props.selectedItem.time}
@@ -48,8 +61,15 @@ class MyModal extends Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={this.handleClose}>Cancel</Button>
-                    <Button onClick={this.handleSubmit} bsStyle="primary">Save</Button>
+                    <Button onClick={this.handleClose}
+                            bsSize="sm">Cancel</Button>
+                    <Button onClick={this.handleDelete}
+                            className={this.props.selectedItem.scheduled === "true" ? '' : 'hidden'}
+                            bsSize="sm"
+                            bsStyle="danger">Delete</Button>
+                    <Button onClick={this.handleSubmit}
+                            bsSize="sm"
+                            bsStyle="primary">Save</Button>
                 </Modal.Footer>
             </Modal>
         );
