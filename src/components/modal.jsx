@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
 import ReactDOM from 'react-dom';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { setItem, closeModal } from '../actions/index';
 
 class MyModal extends Component {
@@ -103,25 +103,28 @@ class MyModal extends Component {
                     <div className={(this.state.showPhoneError) ? "alert alert-danger": "hidden"}>
                         {this.state.phoneError}
                     </div>
-                    Name:<br />
-                    <input ref="name"
-                           id="name"
-                           className="col-xs-12"
-                           placeholder="Full Name"
-                           onKeyDown={this.detectEnterKeyPress}
-                           defaultValue={this.props.selectedItem.name} />
-                    <br />
-                    <br />
-                    Phone:<br />
-                    <input ref="phone"
-                           id="phone"
-                           className="col-xs-12"
-                           placeholder="###-###-####"
-                           maxLength={12}
-                           onKeyDown={this.detectEnterKeyPress}
-                           defaultValue={this.props.selectedItem.phone} />
-                    <br />
-                    <br />
+                    <FormGroup>
+                        <ControlLabel>Name:</ControlLabel>
+                        <FormControl ref="name"
+                               id="name"
+                               className="col-xs-12"
+                               placeholder="Full Name"
+                               onKeyDown={this.detectEnterKeyPress}
+                               defaultValue={this.props.selectedItem.name} />
+                        <br />
+                        <br />
+                        <br />
+                        <ControlLabel>Phone Number:</ControlLabel>
+                        <FormControl ref="phone"
+                               id="phone"
+                               className="col-xs-12"
+                               placeholder="###-###-####"
+                               maxLength={12}
+                               onKeyDown={this.detectEnterKeyPress}
+                               defaultValue={this.props.selectedItem.phone} />
+                        <br />
+                        <br />
+                    </FormGroup>
                 </Modal.Body>
 
                 <Modal.Footer>
