@@ -7,13 +7,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { INITIAL_STATE } from './constants/index';
 
-const store = configureStore(
-    {
-        items: INITIAL_STATE,
-        showModal: false,
-        selectedItem: {}
-    }
-);
+const store = configureStore(INITIAL_STATE);
 
 ReactDOM.render(
     <Provider store={store}>

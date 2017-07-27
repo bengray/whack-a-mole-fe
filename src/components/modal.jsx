@@ -7,9 +7,8 @@ import { setItem, closeModal } from '../actions/index';
 class MyModal extends Component {
     constructor(props) {
         super(props);
-
         this.handleClose = this.handleClose.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSave = this.handleSave.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -17,15 +16,25 @@ class MyModal extends Component {
         this.props.closeModal();
     }
 
-    handleSubmit() {
-        this.props.setItem({
-            name: ReactDOM.findDOMNode(this.refs.name).value,
-            phone: ReactDOM.findDOMNode(this.refs.phone).value,
-            time: this.props.selectedItem.time,
-            displayName: this.props.selectedItem.displayName,
-            scheduled: "true",
-        });
-        this.props.closeModal();
+    handleSave() {
+        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        const phoneInput = ReactDOM.findDOMNode(this.refs.phone).value;
+        const nameInput = ReactDOM.findDOMNode(this.refs.name).value
+
+        if(phoneInput.match(phoneRegex)) {
+            this.props.setItem({
+                name: nameInput,
+                phone: phoneInput,
+                time: this.props.selectedItem.time,
+                displayName: this.props.selectedItem.displayName,
+                scheduled: "true",
+            });
+            this.props.closeModal();
+        } else {
+            alert("Please enter a valid phone number:\n(dashes required) \n ###-###-####");
+        }
+
+
     }
 
     handleDelete() {
@@ -42,21 +51,22 @@ class MyModal extends Component {
     render() {
         return (
             <Modal show={this.props.showModal}
+                   bsSize="small"
                    onHide={this.handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {this.props.selectedItem.time}
+                       Currently setting an appointment for {this.props.selectedItem.displayName}
                     </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
                     <input ref="name"
-                           placeholder="Name"
+                           placeholder="Full Name"
                            defaultValue={this.props.selectedItem.name} />
                     <br />
                     <br />
                     <input ref="phone"
-                           placeholder="Phone Number"
+                           placeholder="###-###-####"
                            defaultValue={this.props.selectedItem.phone} />
                 </Modal.Body>
 
@@ -67,7 +77,7 @@ class MyModal extends Component {
                             className={this.props.selectedItem.scheduled === "true" ? '' : 'hidden'}
                             bsSize="sm"
                             bsStyle="danger">Delete</Button>
-                    <Button onClick={this.handleSubmit}
+                    <Button onClick={this.handleSave}
                             bsSize="sm"
                             bsStyle="primary">Save</Button>
                 </Modal.Footer>
