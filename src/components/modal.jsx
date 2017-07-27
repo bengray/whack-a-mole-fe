@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { isEmpty } from 'lodash';
 import ReactDOM from 'react-dom';
 import { Modal, Button } from 'react-bootstrap';
 import { setItem, closeModal } from '../actions/index';
@@ -10,31 +11,61 @@ class MyModal extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.detectEnterKeyPress = this.detectEnterKeyPress.bind(this);
+
+        this.state = {
+            nameError: "",
+            phoneError: "",
+            showNameError: false,
+            showPhoneError: false
+        }
     }
 
     handleClose() {
+        this.setState({ nameError: "", showNameError: false });
+        this.setState( { phoneError: "", showPhoneError: false });
         this.props.closeModal();
     }
 
-    handleSave() {
-        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-        const phoneInput = ReactDOM.findDOMNode(this.refs.phone).value;
+    validateName() {
         const nameInput = ReactDOM.findDOMNode(this.refs.name).value;
 
+        if(!isEmpty(nameInput)) {
+            this.setState({ nameError: "", showNameError: false });
+            return true;
+        } else {
+            this.setState({ nameError: "Name field is required.", showNameError: true });
+            return false;
+        }
+    }
+
+    validatePhone() {
+        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        const phoneInput = ReactDOM.findDOMNode(this.refs.phone).value;
+
         if(phoneInput.match(phoneRegex)) {
+            this.setState( { phoneError: "", showPhoneError: false });
+            return true;
+        } else {
+            this.setState({ phoneError: "Valid phone number is required. Example: 123-456-7890.", showPhoneError: true });
+            return false;
+        }
+    }
+
+    handleSave() {
+        const validName = this.validateName();
+        const validPhone = this.validatePhone();
+
+        if(validPhone && validName) {
             this.props.setItem({
-                name: nameInput,
-                phone: phoneInput,
+                name: ReactDOM.findDOMNode(this.refs.name).value,
+                phone: ReactDOM.findDOMNode(this.refs.phone).value,
                 time: this.props.selectedItem.time,
                 displayName: this.props.selectedItem.displayName,
                 scheduled: "true",
             });
             this.props.closeModal();
-        } else {
-            alert("Please enter a valid phone number: \n(dashes required) \nexample: 555-567-7890");
         }
-
-
     }
 
     handleDelete() {
@@ -46,6 +77,12 @@ class MyModal extends Component {
             scheduled: "false",
         });
         this.props.closeModal();
+    }
+
+    detectEnterKeyPress(event) {
+        if(event.keyCode === 13) {
+            this.handleSave();
+        }
     }
 
     render() {
@@ -60,18 +97,28 @@ class MyModal extends Component {
                 </Modal.Header>
 
                 <Modal.Body>
+                    <div className={(this.state.showNameError) ? "alert alert-danger" : "hidden"}>
+                        {this.state.nameError}
+                    </div>
+                    <div className={(this.state.showPhoneError) ? "alert alert-danger": "hidden"}>
+                        {this.state.phoneError}
+                    </div>
                     Name:<br />
                     <input ref="name"
+                           id="name"
                            className="col-xs-12"
                            placeholder="Full Name"
+                           onKeyDown={this.detectEnterKeyPress}
                            defaultValue={this.props.selectedItem.name} />
                     <br />
                     <br />
                     Phone:<br />
                     <input ref="phone"
+                           id="phone"
                            className="col-xs-12"
                            placeholder="###-###-####"
                            maxLength={12}
+                           onKeyDown={this.detectEnterKeyPress}
                            defaultValue={this.props.selectedItem.phone} />
                     <br />
                     <br />
