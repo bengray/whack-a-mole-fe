@@ -12,7 +12,7 @@ class App extends Component {
             </div>
             <p className="App-intro">
             Click on a time slot to schedule an appointment<br />
-                <small>(changes not saved permanently)</small>
+                <small>(changes are not saved permanently)</small>
             </p>
             <TimeSlots/>
             <MyModal/>
