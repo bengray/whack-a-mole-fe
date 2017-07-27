@@ -60,14 +60,20 @@ class MyModal extends Component {
                 </Modal.Header>
 
                 <Modal.Body>
+                    Name:<br />
                     <input ref="name"
+                           className="col-xs-12"
                            placeholder="Full Name"
                            defaultValue={this.props.selectedItem.name} />
                     <br />
                     <br />
+                    Phone:<br />
                     <input ref="phone"
+                           className="col-xs-12"
                            placeholder="###-###-####"
                            defaultValue={this.props.selectedItem.phone} />
+                    <br />
+                    <br />
                 </Modal.Body>
 
                 <Modal.Footer>
