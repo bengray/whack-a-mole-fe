@@ -11,7 +11,8 @@ class App extends Component {
             <h2>React/Redux Scheduler</h2>
             </div>
             <p className="App-intro">
-            To get started, click on a time slot.
+            Click on a time slot to schedule an appointment<br />
+                <small>(changes not saved permanently)</small>
             </p>
             <TimeSlots/>
             <MyModal/>
