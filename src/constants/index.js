@@ -67,7 +67,6 @@ export const INITIAL_STATE = {
     showModal: false,
     selectedItem: {}
 };
-export const ITEMS_FETCH = "ITEMS_FETCH";
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const SET_SELECTED_ITEM = "SET_SELECTED_ITEM";

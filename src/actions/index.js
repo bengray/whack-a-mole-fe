@@ -1,17 +1,9 @@
 import {
-    ITEMS_FETCH,
     SET_ITEM,
     OPEN_MODAL,
     CLOSE_MODAL,
     SET_SELECTED_ITEM
 } from '../constants/index';
-
-export function fetchItems(items) {
-    return {
-        type: ITEMS_FETCH,
-        payload: items
-    };
-}
 
 export function setItem(item) {
     return {
