@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchItems, openModal, closeModal, setSelectedItem } from '../actions/index';
+import { fetchItems, openModal, setSelectedItem } from '../actions/index';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class TimeSlots extends Component {
@@ -38,7 +38,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchItems: () => dispatch(fetchItems()),
         openModal: () => dispatch(openModal()),
-        closeModal: () => dispatch(closeModal()),
         setSelectedItem: (item) => dispatch(setSelectedItem(item))
     };
 };
