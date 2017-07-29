@@ -3,7 +3,7 @@
 This project is built with React, Redux and Node.  It was bootstrapped with 
 create-react-app. The typical "npm start" and "npm (run) build" apply here. 
 
-It would serve well as a base implementation for a React/Redux front end.
+It would serve well as a base implementation for a React/Redux stub.
 
 ## License
 
