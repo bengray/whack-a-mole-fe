@@ -32,3 +32,10 @@ export function setSelectedItem(item) {
         payload: item
     }
 }
+
+export function setInitialState(initial) {
+    return {
+        type: 'FETCH_INITIAL_STATE',
+        payload: initial
+    }
+}

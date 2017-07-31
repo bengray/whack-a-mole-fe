@@ -5,9 +5,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { INITIAL_STATE } from './constants/index';
 
-const store = configureStore(INITIAL_STATE);
+const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
