@@ -5,7 +5,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class TimeSlots extends Component {
     componentDidMount() {
-        this.fetchData('http://taxi49627.autotrader.com:8080/api/')
+        this.fetchData('http://localhost:8080/api/')
     }
 
     fetchData(url) {
