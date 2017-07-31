@@ -2,7 +2,8 @@ import {
     SET_ITEM,
     OPEN_MODAL,
     CLOSE_MODAL,
-    SET_SELECTED_ITEM
+    SET_SELECTED_ITEM,
+    FETCH_INITIAL_STATE
 } from '../constants/index';
 
 export function setItem(item) {
@@ -35,7 +36,7 @@ export function setSelectedItem(item) {
 
 export function setInitialState(initial) {
     return {
-        type: 'FETCH_INITIAL_STATE',
+        type: FETCH_INITIAL_STATE,
         payload: initial
     }
 }
