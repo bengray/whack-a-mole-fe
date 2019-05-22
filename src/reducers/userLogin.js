@@ -1,10 +1,10 @@
 import {
-    SET_SELECTED_ITEM
+    USER_LOGIN
 } from '../constants/index';
 
-export function selectedItem(state = {}, action) {
+export function userLogin(state = {}, action) {
     switch (action.type) {
-        case SET_SELECTED_ITEM:
+        case USER_LOGIN:
             return action.payload;
 
         default:

@@ -1,14 +1,13 @@
 import {
-    SET_ITEM,
-    FETCH_INITIAL_STATE
+    SET_SCORE, GET_HIGH_SCORES
 } from '../constants/index';
 
-export function items(state = [], action) {
+export function scores(state = [], action) {
     switch (action.type) {
-        case FETCH_INITIAL_STATE:
+        case GET_HIGH_SCORES:
             return action.payload.items;
 
-        case SET_ITEM:
+        case SET_SCORE:
 
             const updatedItems = state.map(item => {
                 if(item.time === action.payload.time) {
@@ -21,4 +20,5 @@ export function items(state = [], action) {
         default:
             return state;
     }
+
 }

@@ -1,42 +1,26 @@
 import {
-    SET_ITEM,
-    OPEN_MODAL,
-    CLOSE_MODAL,
-    SET_SELECTED_ITEM,
-    FETCH_INITIAL_STATE
+    SET_SCORE,
+    GET_HIGH_SCORES,
+    USER_LOGIN
 } from '../constants/index';
 
-export function setItem(item) {
+export function setScore(item) {
     return {
-        type: SET_ITEM,
+        type: SET_SCORE,
         payload: item
     };
 }
 
-export function openModal() {
+export function userLogin(userName, password) {
     return {
-        type: OPEN_MODAL,
+        type: USER_LOGIN,
         payload: true
     };
 }
 
-export function closeModal() {
+export function getHighScores() {
     return {
-        type: CLOSE_MODAL,
+        type: GET_HIGH_SCORES,
         payload: false
     };
-}
-
-export function setSelectedItem(item) {
-    return {
-        type: SET_SELECTED_ITEM,
-        payload: item
-    }
-}
-
-export function setInitialState(initial) {
-    return {
-        type: FETCH_INITIAL_STATE,
-        payload: initial
-    }
 }

@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import TimeSlots from './components/time_slots';
-import MyModal from './components/modal';
 
 class App extends Component {
     render() {
         return (
         <div className="App">
             <div className="App-header">
-            <h2>React/Redux Scheduler</h2>
+            <h2>Whack a mole</h2>
             </div>
             <p className="App-intro">
-            Click on a time slot to schedule an appointment<br />
-                <small>(changes are not saved permanently)</small>
+            Click the START button to begin!
             </p>
-            <TimeSlots/>
-            <MyModal/>
         </div>
         );
     }

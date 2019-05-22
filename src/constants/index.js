@@ -1,5 +1,3 @@
-export const OPEN_MODAL = "OPEN_MODAL";
-export const CLOSE_MODAL = "CLOSE_MODAL";
-export const SET_SELECTED_ITEM = "SET_SELECTED_ITEM";
-export const SET_ITEM = "SET_ITEM";
-export const FETCH_INITIAL_STATE = "FETCH_INITIAL_STATE";
+export const SET_SCORE = "SET_SCORE";
+export const GET_HIGH_SCORES = "GET_HIGH_SCORES";
+export const USER_LOGIN = "USER_LOGIN";
