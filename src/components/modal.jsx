@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { isEmpty } from 'lodash';
-import ReactDOM from 'react-dom';
 import { Modal, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import { userLogin, closeModal } from '../actions/index';
+import { closeModal } from '../actions/index';
 
 class LoginModal extends Component {
     constructor(props) {
@@ -29,7 +27,7 @@ class LoginModal extends Component {
                    onHide={this.handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                       login now!
+                       login
                     </Modal.Title>
                 </Modal.Header>
 

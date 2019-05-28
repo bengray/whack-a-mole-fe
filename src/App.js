@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import LoginModal from './components/modal';
+import Username from './components/username';
+import Timer from './components/timer';
+import Moles from './components/moles';
+import MoleCount from './components/moleCount';
+import HighScores from './components/highScores';
+import { connect } from 'react-redux';
 
 class App extends Component {
     render() {
@@ -9,16 +14,32 @@ class App extends Component {
                  <div className="App">
                     <div className="App-header">
                     <h2>Whack a mole</h2>
-                    </div>
-                    <p className="App-intro">
-                    Click the START button to begin!
+                    <p>
+                        Click the START button to begin!
                     </p>
-                    <button>START!</button>
+                    </div>
+                    <div className="click-count">
+                        Total Hits: {this.props.clickCount}
+                    </div>
                 </div>
-                <LoginModal />
+                <Timer />
+                <div className="game-body">
+                    <Username />
+                    <MoleCount />
+                    <Moles />                    
+                </div>
+                <div className="high-scores">
+                    <HighScores />
+                </div>
             </div>
         );
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        clickCount: state.clickCount,
+    };
+};
+
+export default connect(mapStateToProps)(App);

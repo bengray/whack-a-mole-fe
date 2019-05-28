@@ -1,9 +1,18 @@
 import {
-    SET_SCORE, GET_HIGH_SCORES
+    SET_SCORE,
+    GET_HIGH_SCORES,
+    STORE_USER_SCORE
 } from '../constants/index';
 
-export function scores(state = [], action) {
+export function scores(state = {}, action) {
+
     switch (action.type) {
+        case STORE_USER_SCORE:
+                console.log('I am in the reducer');
+                console.log(state);
+                console.log(action);
+            return {...state, ...action.payload}
+
         case GET_HIGH_SCORES:
             return action.payload.items;
 
@@ -17,8 +26,8 @@ export function scores(state = [], action) {
             });
 
             return updatedItems;
+
         default:
             return state;
     }
-
 }

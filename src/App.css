@@ -9,20 +9,60 @@
 }
 
 .App-intro {
-    font-size: large;
+    font-size: 16px;
     margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.click-count {
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
 }
 
-li {
-    list-style-type: none;
+.game-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mole-count {
+    font-size: 16px;
+    display: flex;
+    align-items: flex-start;
 }
 
 .time_slot_button {
     font-size: 20px;
     text-align: center !important;
+}
+
+.timer-section {
+    margin: 25px 0 0 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+img.mole {
+    width: 100px;
+}
+
+.moles-row {
+    display: flex;
+}
+
+.mole-box {
+    width: 100px;
 }
