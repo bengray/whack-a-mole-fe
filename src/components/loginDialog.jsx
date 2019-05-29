@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Modal, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { closeModal } from '../actions/index';
 
-class LoginModal extends Component {
+class LoginDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -80,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginDialog);

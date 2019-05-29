@@ -23,7 +23,6 @@ class Timer extends Component {
             method: 'POST',
             mode: 'cors',
             headers: {
-                // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
                 'Content-Type': "application/json; charset=utf-8"
             },
             body: JSON.stringify(data)
@@ -40,6 +39,7 @@ class Timer extends Component {
             this.setState({buttonText: 'Reset'});
             this.props.stopTimer();
             this.saveScore();
+            window.location.reload();
         }
         if(this.state.seconds !== 0) {
             setTimeout(this.runTicker, 1000);

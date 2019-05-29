@@ -5,7 +5,7 @@ import Timer from './components/timer';
 import Moles from './components/moles';
 import MoleCount from './components/moleCount';
 import HighScores from './components/highScores';
-import { fetchHighScores } from './actions';
+import LoginDialog from './components/loginDialog';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -55,7 +55,7 @@ class App extends Component {
                     </div>
                 </div>
                 <div className="score-box">
-                    <h3>High Scores:</h3>
+                    <h3>Top 5 Scores:</h3>
                     {this.renderHighScores()}
                 </div>
                 <Timer />
@@ -67,6 +67,7 @@ class App extends Component {
                 <div className="high-scores">
                     <HighScores />
                 </div>
+                <LoginDialog />
             </div>
         );
     }

@@ -1,6 +1,4 @@
 import {
-    SET_SCORE,
-    GET_HIGH_SCORES,
     USER_LOGIN,
     OPEN_MODAL,
     CLOSE_MODAL,
@@ -8,28 +6,13 @@ import {
     STOP_TIMER,
     INCREMENT_COUNT,
     SET_MOLE_COUNT,
-    SET_USER_NAME,
-    STORE_USER_SCORE
+    SET_USER_NAME
 } from '../constants/index';
-
-export function setScore(item) {
-    return {
-        type: SET_SCORE,
-        payload: item
-    };
-}
 
 export function userLogin(userName, password) {
     return {
         type: USER_LOGIN,
         payload: true
-    };
-}
-
-export function getHighScores() {
-    return {
-        type: GET_HIGH_SCORES,
-        payload: false
     };
 }
 
@@ -78,15 +61,5 @@ export function setUserName(name) {
     return {
         type: SET_USER_NAME,
         payload: name
-    }
-}
-
-export function storeUserScore(userName, score) {
-    return {
-        type: STORE_USER_SCORE,
-        payload: {
-            userName,
-            score
-        }
     }
 }

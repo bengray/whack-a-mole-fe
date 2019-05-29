@@ -1,5 +1,3 @@
-export const SET_SCORE = "SET_SCORE";
-export const GET_HIGH_SCORES = "GET_HIGH_SCORES";
 export const USER_LOGIN = "USER_LOGIN";
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
@@ -8,4 +6,3 @@ export const STOP_TIMER = "STOP_TIMER";
 export const INCREMENT_COUNT = "INCREMENT_COUNT";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_MOLE_COUNT = "SET_MOLE_COUNT";
-export const STORE_USER_SCORE = "STORE_USER_SCORE";
