@@ -66,3 +66,16 @@ img.mole {
 .mole-box {
     width: 100px;
 }
+
+.score-box {
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px 25px;
+    border: 1px solid black;
+    width: 200px;
+    position: absolute;
+}
+
+.score-item {
+    display: flex;
+}

@@ -12,6 +12,26 @@ class Timer extends Component {
         }
     }
     
+    saveScore = () => {
+        const url = 'http://localhost:8000/scores';
+        const data = {
+            "userName": this.props.userName,
+            "score": this.props.clickCount
+        };
+
+        return fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                'Content-Type': "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(data)
+                
+        })
+        .then(result => console.log(result));
+    }
+
     runTicker = () => {
         if(this.state.seconds > 0) {
             this.setState({seconds: this.state.seconds - 1});
@@ -19,6 +39,7 @@ class Timer extends Component {
         if(this.state.seconds === 0) {
             this.setState({buttonText: 'Reset'});
             this.props.stopTimer();
+            this.saveScore();
         }
         if(this.state.seconds !== 0) {
             setTimeout(this.runTicker, 1000);
@@ -49,8 +70,7 @@ const mapStateToProps = (state) => {
     return {
         timerRunning: state.timerRunning,
         userName: state.setUserName,
-        clickCount: state.clickCount,
-        scores: state.scores
+        clickCount: state.clickCount
     };
 };
 
@@ -58,7 +78,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         startTimer: () => dispatch(startTimer()),
         stopTimer: () => dispatch(stopTimer()),
-        storeUserScore: (newScoresObj) => dispatch(storeUserScore(newScoresObj)),
     };
 };
 
