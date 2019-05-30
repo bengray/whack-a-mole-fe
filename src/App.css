@@ -67,6 +67,10 @@ img.mole {
     width: 100px;
 }
 
+.mole-count-input {
+    width: 50px;
+}
+
 .score-box {
     display: flex;
     flex-direction: column;

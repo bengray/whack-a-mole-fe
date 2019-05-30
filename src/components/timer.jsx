@@ -20,7 +20,7 @@ class Timer extends Component {
         }
         if(this.state.seconds === 0) {
             this.props.stopTimer();
-            this.setState({buttonText: 'RESET'});
+            this.setState({buttonText: 'NEW GAME'});
             this.props.saveScore(
                 this.props.userName,
                 this.props.clickCount
