@@ -5,15 +5,13 @@ import Moles from './components/moles';
 import MoleCount from './components/moleCount';
 import LoginDialog from './components/loginDialog';
 import HighScores from './components/highScores';
-import { setHighScores } from './actions/index';
+import { getHighScores } from './actions/index';
 import { connect } from 'react-redux';
 
 class App extends Component {
 
     componentDidMount() {
-        fetch('http://localhost:8000/scores')
-        .then(results => results.json())
-        .then(results => this.props.setHighScores(results));
+        this.props.getHighScores();
     }
 
     render() {
@@ -44,14 +42,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        clickCount: state.clickCount,
-        highScores: state.highScores
+        clickCount: state.clickCount
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setHighScores: (scores) => dispatch(setHighScores(scores))
+        getHighScores: () => dispatch(getHighScores())
     };
 };
 

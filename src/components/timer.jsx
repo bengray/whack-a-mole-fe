@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { startTimer, stopTimer } from '../actions/index';
+import { 
+    startTimer,
+    stopTimer,
+    saveScore } from '../actions/index';
 
 class Timer extends Component {
     constructor(props) {
@@ -11,31 +14,17 @@ class Timer extends Component {
         }
     }
 
-    saveScore = () => {
-        const url = 'http://localhost:8000/scores';
-        const data = {
-            "userName": this.props.userName,
-            "score": this.props.clickCount
-        };
-
-        return fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': "application/json; charset=utf-8"
-            },
-            body: JSON.stringify(data)
-                
-        });
-    }
-
     runTicker = () => {
         if(this.state.seconds > 0) {
             this.setState({seconds: this.state.seconds - 1});
         }
         if(this.state.seconds === 0) {
             this.props.stopTimer();
-            this.saveScore();
+            this.setState({buttonText: 'RESET'});
+            this.props.saveScore(
+                this.props.userName,
+                this.props.clickCount
+            );
         }
         if(this.state.seconds !== 0) {
             setTimeout(this.runTicker, 1000);
@@ -43,15 +32,26 @@ class Timer extends Component {
     }
 
     handleStartTimer = () => {
-        this.setState({seconds: 10, buttonText: 'START!'});
         this.props.startTimer();
         this.runTicker();
+    }
+
+    resetGame = () => {
+        this.setState({seconds: 10, buttonText: 'START!'});
+    }
+
+    handleButtonClick = () => {
+        if (this.state.seconds === 0 && !this.props.timerRunning) {
+            this.resetGame();
+        } else {
+            this.handleStartTimer()
+        }
     }
 
     render() {
         return (
             <div className='timer-section'>
-                <button className={this.props.timerRunning ? 'hide' : 'show'} onClick={() => this.handleStartTimer()}>{this.state.buttonText}</button>
+                <button className={this.props.timerRunning ? 'hide' : 'show'} onClick={() => this.handleButtonClick()}>{this.state.buttonText}</button>
                 <br />
                 Seconds remaining: {this.state.seconds}
                 <br />
@@ -73,7 +73,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         startTimer: () => dispatch(startTimer()),
-        stopTimer: () => dispatch(stopTimer())
+        stopTimer: () => dispatch(stopTimer()),
+        saveScore: (userName, score) => dispatch(saveScore(userName, score))
     };
 };
 
