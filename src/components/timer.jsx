@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { startTimer, stopTimer, storeUserScore } from '../actions/index';
-
+import { startTimer, stopTimer } from '../actions/index';
 
 class Timer extends Component {
     constructor(props) {
@@ -11,7 +10,7 @@ class Timer extends Component {
             buttonText: 'START!'
         }
     }
-    
+
     saveScore = () => {
         const url = 'http://localhost:8000/scores';
         const data = {
@@ -27,8 +26,7 @@ class Timer extends Component {
             },
             body: JSON.stringify(data)
                 
-        })
-        .then(result => console.log(result));
+        });
     }
 
     runTicker = () => {
@@ -36,10 +34,8 @@ class Timer extends Component {
             this.setState({seconds: this.state.seconds - 1});
         }
         if(this.state.seconds === 0) {
-            this.setState({buttonText: 'Reset'});
             this.props.stopTimer();
             this.saveScore();
-            window.location.reload();
         }
         if(this.state.seconds !== 0) {
             setTimeout(this.runTicker, 1000);
@@ -69,7 +65,7 @@ class Timer extends Component {
 const mapStateToProps = (state) => {
     return {
         timerRunning: state.timerRunning,
-        userName: state.setUserName,
+        userName: state.userName,
         clickCount: state.clickCount
     };
 };
@@ -77,7 +73,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         startTimer: () => dispatch(startTimer()),
-        stopTimer: () => dispatch(stopTimer()),
+        stopTimer: () => dispatch(stopTimer())
     };
 };
 

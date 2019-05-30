@@ -79,3 +79,8 @@ img.mole {
 .score-item {
     display: flex;
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}

@@ -1,34 +1,13 @@
 import {
-    USER_LOGIN,
-    OPEN_MODAL,
-    CLOSE_MODAL,
+    SET_VALID_USER,
     START_TIMER,
     STOP_TIMER,
     INCREMENT_COUNT,
     SET_MOLE_COUNT,
-    SET_USER_NAME
+    SET_USER_NAME,
+    SET_HIGH_SCORES,
+    SET_LAST_UPDATED
 } from '../constants/index';
-
-export function userLogin(userName, password) {
-    return {
-        type: USER_LOGIN,
-        payload: true
-    };
-}
-
-export function openModal() {
-    return {
-        type: OPEN_MODAL,
-        payload: true
-    };
-}
-
-export function closeModal() {
-    return {
-        type: CLOSE_MODAL,
-        payload: false
-    };
-}
 
 export function startTimer() {
     return {
@@ -61,5 +40,19 @@ export function setUserName(name) {
     return {
         type: SET_USER_NAME,
         payload: name
+    }
+}
+
+export function setValidUser(userName) {
+    return {
+        type: SET_VALID_USER,
+        payload: userName
+    }
+}
+
+export function setHighScores(scores) {
+    return {
+        type: SET_HIGH_SCORES,
+        payload: scores
     }
 }

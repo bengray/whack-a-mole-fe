@@ -1,66 +1,93 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import { closeModal } from '../actions/index';
+import { Modal, Button, FormGroup, FormControl } from 'react-bootstrap';
+import { setValidUser, setUserName } from '../actions/index';
 
 class LoginDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            userName: '',
+            password: '',
+            errorMessage: null
         }
     }
 
-    handleClose = () => {
-        this.props.closeModal();
+    handleInput = (field, value) => {
+        this.setState({[field]: value, errorMessage: null});
     }
 
     detectEnterKeyPress = (event) => {
         if(event.keyCode === 13) {
-            this.handleSave();
+            this.handleSubmit();
         }
+    }
+
+    // createNewUser = () => {
+    //     const url = 'http://localhost:8000/user';
+    //     const data = {
+    //         "userName": this.state.userName,
+    //         "password": this.state.password
+    //     };
+    //     return fetch(url, {
+    //         method: 'POST',
+    //         mode: 'cors',
+    //         headers: {
+    //             'Content-Type': "application/json; charset=utf-8"
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    //     .then(results => results.json())
+    //     .then(results => console.log(results));
+    // }
+
+    handleValidUser = (userName) => {
+        this.props.setValidUser(userName);
+        this.props.setUserName(userName);
+    }
+
+    handleSubmit = () => {
+        fetch(`http://localhost:8000/user?userName=${this.state.userName}&password=${this.state.password}`)
+        .then(result => result.json())
+        .then(result => this.handleValidUser(result.userName))
+        .catch(error => this.setState({errorMessage: 'Invalid User Credentials'}));
     }
 
     render() {
         return (
-            <Modal show={!this.props.showModal}
+            <Modal show={!this.props.validUser}
                    bsSize="small"
                    onHide={this.handleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>
-                       login
+                       Login
                     </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
+                    <span className="error-message">{this.state.errorMessage}</span>
                     <FormGroup>
-                        <ControlLabel>Name:</ControlLabel>
                         <FormControl ref="name"
                                id="name"
-                               className="col-xs-12"
-                               placeholder="user name goes here"
+                               placeholder="User Name"
                                onKeyDown={this.detectEnterKeyPress}
-                               defaultValue='foo' />
+                               onChange={(event) => this.handleInput('userName', event.target.value)}
+                               value={this.state.userName} />
                         <br />
-                        <br />
-                        <br />
-                        <ControlLabel>Password:</ControlLabel>
                         <FormControl ref="password"
                                id="password"
-                               className="col-xs-12"
-                               placeholder="password goes here"
+                               type="password"
+                               placeholder="Password"
                                onKeyDown={this.detectEnterKeyPress}
-                               defaultValue='bar' />
-                        <br />
-                        <br />
+                               onChange={(event) => this.handleInput('password', event.target.value)}
+                               value={this.state.password} />
                     </FormGroup>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={this.handleClose}
-                            bsSize="sm">Cancel</Button>
-                    <Button onClick={this.handleLogin}
+                    <Button onClick={this.handleSubmit}
                             bsSize="sm"
-                            bsStyle="primary">Log in</Button>
+                            bsStyle="primary">Submit</Button>
                 </Modal.Footer>
             </Modal>
         );
@@ -69,14 +96,14 @@ class LoginDialog extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        showModal: state.userLogin,
+        validUser: state.validUser,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // setItem: (item) => dispatch(setItem(item)),
-        closeModal: () => dispatch(closeModal())
+        setValidUser: (userName) => dispatch(setValidUser(userName)),
+        setUserName: (userName) => dispatch(setUserName(userName))
     };
 };
 

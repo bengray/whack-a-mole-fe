@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
-import { userLogin } from './userLogin';
+import { validUser } from './validUser';
 import { clickCount } from './clickCount';
 import { timerRunning } from './timerRunning';
 import { numberOfMoles } from './numberOfMoles';
-import { setUserName } from './setUserName';
+import { userName } from './userName';
+import { highScores } from './highScores';
 
 export default combineReducers({
-    userLogin,
+    validUser,
     clickCount,
     timerRunning,
     numberOfMoles,
-    setUserName
+    userName,
+    highScores
 });
