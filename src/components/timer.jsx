@@ -33,7 +33,6 @@ class Timer extends Component {
     }
 
     handleStartTimer = () => {
-        console.log(this.props.numberOfMoles);
         if(this.props.numberOfMoles !== 0 && this.props.numberOfMoles !== null) {
             this.props.startTimer();
             this.runTicker();

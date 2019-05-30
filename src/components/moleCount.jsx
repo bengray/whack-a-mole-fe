@@ -12,15 +12,15 @@ class MoleCount extends Component {
     }
 
     isWholeNumber = (input) => {
-        if (input % 1 === 0 && input !== 0) {
-          return true;
-        } 
+        if (input != '0' && input % 1 === 0) {
+            return true;
+        }
         return false;
     }
 
     handleMoleCountChange = (input) => {
         if (!this.isWholeNumber(input)) {
-            this.setState({errorMessage: 'This field must be a whole number'});
+            this.setState({errorMessage: 'This field must be a non-zero whole number'});
         } else {
             this.setState({moleCount: input, errorMessage: null});
             this.props.setNumberOfMoles(parseInt(input, 10));
