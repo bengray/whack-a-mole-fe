@@ -16,7 +16,7 @@ class Moles extends Component {
             moles.push(
                 <div className='mole-box'>
                     <div id={`mole-${i}`} onClick={this.props.incrementCount} className={this.state.showThisMole === i ? 'show' : 'hide'}>
-                        <img className='mole' src='/images/mole.jpg' />
+                        <img className='mole' src='/images/mole.png' />
                     </div>
                 </div>
             );
@@ -32,11 +32,11 @@ class Moles extends Component {
     getMoleSpeed = () => {
         const moleSpeed = this.props.moleSpeed;
         if (moleSpeed === 'fast') {
-            return 500;
+            return 450;
         } else if (moleSpeed === 'slow') {
-            return 2000;
+            return 1860;
         } else {
-            return 1000;
+            return 1200;
         }
     }
 
