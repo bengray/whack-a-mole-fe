@@ -17,7 +17,7 @@
 }
 
 .click-count {
-    font-size: 48px;
+    font-size: 24px;
     display: flex;
     justify-content: center;
 }
@@ -65,6 +65,7 @@ img.mole {
 
 .mole-box {
     width: 100px;
+    margin: 0 10px 0;
 }
 
 .mole-count-input {

@@ -32,7 +32,7 @@ class Moles extends Component {
         if(this.props.timerRunning) {
             setTimeout(() => {
                 this.setState({showThisMole: this.newRandomNumber(0, this.props.numberOfMoles)})
-            }, 1000)
+            }, 1200)
         }
     }
 

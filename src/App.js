@@ -25,7 +25,7 @@ class App extends Component {
                     </p>
                     </div>
                     <div className="click-count">
-                        Total Hits: {this.props.clickCount}
+                        Score: {this.props.clickCount}
                     </div>
                 </div>
                 <HighScores />
