@@ -10,7 +10,8 @@ import {
     SCORE_SAVED_SUCCESSFULLY,
     SAVING_SCORE,
     FETCHING_HIGH_SCORES,
-    HIGH_SCORES_FETCHED_SUCCESSFULLY
+    HIGH_SCORES_FETCHED_SUCCESSFULLY,
+    RESET_CLICK_COUNT
 } from '../constants/index';
 
 export function startTimer() {
@@ -65,6 +66,12 @@ export function setMoleSpeed(speed) {
     return {
         type: SET_MOLE_SPEED,
         payload: speed
+    }
+}
+
+export function resetClickCount() {
+    return {
+        type: RESET_CLICK_COUNT
     }
 }
 

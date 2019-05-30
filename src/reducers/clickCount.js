@@ -1,5 +1,6 @@
 import {
-    INCREMENT_COUNT
+    INCREMENT_COUNT,
+    RESET_CLICK_COUNT
 } from '../constants/index';
 
 export function clickCount(state = 0, action) {
@@ -7,6 +8,8 @@ export function clickCount(state = 0, action) {
         case INCREMENT_COUNT: 
             return state+1;
 
+        case RESET_CLICK_COUNT:
+            return 0;
         default:
             return state;
     }

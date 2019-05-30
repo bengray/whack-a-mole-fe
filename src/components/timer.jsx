@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { 
     startTimer,
     stopTimer,
-    saveScore } from '../actions/index';
+    saveScore,
+    resetClickCount } from '../actions/index';
 
 class Timer extends Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class Timer extends Component {
 
     resetGame = () => {
         this.setState({seconds: 20, buttonText: 'START!'});
+        this.props.resetClickCount();
     }
 
     handleButtonClick = () => {
@@ -78,7 +80,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         startTimer: () => dispatch(startTimer()),
         stopTimer: () => dispatch(stopTimer()),
-        saveScore: (userName, score) => dispatch(saveScore(userName, score))
+        saveScore: (userName, score) => dispatch(saveScore(userName, score)),
+        resetClickCount: () => dispatch(resetClickCount())
     };
 };
 
