@@ -5,9 +5,9 @@
   "dependencies": {
     "axios": "^0.16.2",
     "lodash": "^4.17.4",
-    "react": "^15.6.1",
+    "react": "^16.0.0",
     "react-bootstrap": "^0.31.1",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.5",
     "react-scripts": "1.0.10",
     "react-select": "^3.0.3",

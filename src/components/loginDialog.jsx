@@ -9,7 +9,9 @@ class LoginDialog extends Component {
         this.state = {
             userName: '',
             password: '',
-            errorMessage: null
+            errorMessage: null,
+            createNewUser: false,
+            userLogin: true
         }
     }
 
@@ -23,23 +25,23 @@ class LoginDialog extends Component {
         }
     }
 
-    // createNewUser = () => {
-    //     const url = 'http://localhost:8000/user';
-    //     const data = {
-    //         "userName": this.state.userName,
-    //         "password": this.state.password
-    //     };
-    //     return fetch(url, {
-    //         method: 'POST',
-    //         mode: 'cors',
-    //         headers: {
-    //             'Content-Type': "application/json; charset=utf-8"
-    //         },
-    //         body: JSON.stringify(data)
-    //     })
-    //     .then(results => results.json())
-    //     .then(results => console.log(results));
-    // }
+    createNewUser = () => {
+        const url = 'http://localhost:8000/user';
+        const data = {
+            "userName": this.state.userName,
+            "password": this.state.password
+        };
+        return fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(results => results.json())
+        .then(results => console.log(results));
+    }
 
     handleValidUser = (userName) => {
         this.props.setValidUser(userName);
@@ -53,14 +55,12 @@ class LoginDialog extends Component {
         .catch(error => this.setState({errorMessage: 'Invalid User Credentials'}));
     }
 
-    render() {
+    renderUserLogin = () => {
         return (
-            <Modal show={!this.props.validUser}
-                   bsSize="small"
-                   onHide={this.handleClose}>
+            <div>
                 <Modal.Header>
                     <Modal.Title>
-                       Login
+                        Login
                     </Modal.Title>
                 </Modal.Header>
 
@@ -68,19 +68,19 @@ class LoginDialog extends Component {
                     <span className="error-message">{this.state.errorMessage}</span>
                     <FormGroup>
                         <FormControl ref="name"
-                               id="name"
-                               placeholder="User Name"
-                               onKeyDown={this.detectEnterKeyPress}
-                               onChange={(event) => this.handleInput('userName', event.target.value)}
-                               value={this.state.userName} />
+                                id="name"
+                                placeholder="User Name"
+                                onKeyDown={this.detectEnterKeyPress}
+                                onChange={(event) => this.handleInput('userName', event.target.value)}
+                                value={this.state.userName} />
                         <br />
                         <FormControl ref="password"
-                               id="password"
-                               type="password"
-                               placeholder="Password"
-                               onKeyDown={this.detectEnterKeyPress}
-                               onChange={(event) => this.handleInput('password', event.target.value)}
-                               value={this.state.password} />
+                                id="password"
+                                type="password"
+                                placeholder="Password"
+                                onKeyDown={this.detectEnterKeyPress}
+                                onChange={(event) => this.handleInput('password', event.target.value)}
+                                value={this.state.password} />
                     </FormGroup>
                 </Modal.Body>
 
@@ -89,6 +89,17 @@ class LoginDialog extends Component {
                             bsSize="sm"
                             bsStyle="primary">Submit</Button>
                 </Modal.Footer>
+            </div>
+           
+        )
+    }
+
+    render() {
+        return (
+            <Modal show={!this.props.validUser}
+                   bsSize="small"
+                   onHide={this.handleClose}>
+                {this.renderUserLogin()}
             </Modal>
         );
     }
