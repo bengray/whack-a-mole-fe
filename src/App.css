@@ -60,7 +60,7 @@ img.mole {
 }
 
 .moles-row {
-    border: 3px solid gray;
+    background-color: lightgreen;
     border-radius: 1.5px;
     display: grid;
     grid-template-columns: 130px 130px 130px 130px;
