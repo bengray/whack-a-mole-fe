@@ -1,10 +1,10 @@
 import {
-    SET_MOLE_COUNT
+    SET_MOLE_SPEED
 } from '../constants/index';
 
-export function numberOfMoles(state = 9, action) {
+export function moleSpeed(state = 'slow', action) {
     switch (action.type) {
-        case SET_MOLE_COUNT:
+        case SET_MOLE_SPEED:
             return action.payload
         default:
             return state;

@@ -9,7 +9,7 @@ class Timer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            seconds: 10,
+            seconds: 20,
             buttonText: 'START!'
         }
     }
@@ -32,12 +32,17 @@ class Timer extends Component {
     }
 
     handleStartTimer = () => {
-        this.props.startTimer();
-        this.runTicker();
+        console.log(this.props.numberOfMoles);
+        if(this.props.numberOfMoles !== 0 && this.props.numberOfMoles !== null) {
+            this.props.startTimer();
+            this.runTicker();
+        } else {
+            alert('number of moles must be greater than zero');
+        }
     }
 
     resetGame = () => {
-        this.setState({seconds: 10, buttonText: 'START!'});
+        this.setState({seconds: 20, buttonText: 'START!'});
     }
 
     handleButtonClick = () => {
@@ -64,7 +69,8 @@ const mapStateToProps = (state) => {
     return {
         timerRunning: state.timerRunning,
         userName: state.userName,
-        clickCount: state.clickCount
+        clickCount: state.clickCount,
+        numberOfMoles: state.numberOfMoles
     };
 };
 

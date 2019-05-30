@@ -5,6 +5,7 @@ import Moles from './components/moles';
 import MoleCount from './components/moleCount';
 import LoginDialog from './components/loginDialog';
 import HighScores from './components/highScores';
+import MoleSpeed from './components/moleSpeed';
 import { getHighScores } from './actions/index';
 import { connect } from 'react-redux';
 
@@ -32,6 +33,7 @@ class App extends Component {
                 <Timer />
                 <div className="game-body">
                     <MoleCount />
+                    <MoleSpeed />
                     <Moles />                    
                 </div>
                 <LoginDialog />

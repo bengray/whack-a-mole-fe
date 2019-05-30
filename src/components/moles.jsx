@@ -24,15 +24,27 @@ class Moles extends Component {
         return moles;
     }
 
-    newRandomNumber = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min; 
+    generateRandomNumber = (min, max) => {
+        const newNumber = Math.floor(Math.random() * (max - min));
+        return newNumber;
+    }
+
+    getMoleSpeed = () => {
+        const moleSpeed = this.props.moleSpeed;
+        if (moleSpeed === 'fast') {
+            return 500;
+        } else if (moleSpeed === 'slow') {
+            return 2000;
+        } else {
+            return 1000;
+        }
     }
 
     generateRandomMole = () => {
         if(this.props.timerRunning) {
             setTimeout(() => {
-                this.setState({showThisMole: this.newRandomNumber(0, this.props.numberOfMoles)})
-            }, 1200)
+                this.setState({showThisMole: this.generateRandomNumber(0, this.props.numberOfMoles)})
+            }, this.getMoleSpeed())
         }
     }
 
@@ -51,7 +63,8 @@ class Moles extends Component {
 const mapStateToProps = (state) => {
     return {
         timerRunning: state.timerRunning,
-        numberOfMoles: state.numberOfMoles
+        numberOfMoles: state.numberOfMoles,
+        moleSpeed: state.moleSpeed
     };
 };
 

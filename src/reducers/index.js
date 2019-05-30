@@ -5,6 +5,7 @@ import { timerRunning } from './timerRunning';
 import { numberOfMoles } from './numberOfMoles';
 import { userName } from './userName';
 import { highScores } from './highScores';
+import { moleSpeed } from './moleSpeed';
 
 export default combineReducers({
     validUser,
@@ -12,5 +13,6 @@ export default combineReducers({
     timerRunning,
     numberOfMoles,
     userName,
-    highScores
+    highScores,
+    moleSpeed
 });

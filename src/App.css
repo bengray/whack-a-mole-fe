@@ -60,11 +60,18 @@ img.mole {
 }
 
 .moles-row {
-    display: flex;
-}
+    border: 3px solid gray;
+    border-radius: 1.5px;
+    display: grid;
+    grid-template-columns: 130px 130px 130px 130px;
+    grid-template-rows: 100px 100px 100px; 
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+  }
 
 .mole-box {
     width: 100px;
+    height: 100px;
     margin: 0 10px 0;
 }
 

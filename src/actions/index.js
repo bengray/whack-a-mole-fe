@@ -4,6 +4,7 @@ import {
     STOP_TIMER,
     INCREMENT_COUNT,
     SET_MOLE_COUNT,
+    SET_MOLE_SPEED,
     SET_USER_NAME,
     SET_HIGH_SCORES,
     SCORE_SAVED_SUCCESSFULLY,
@@ -57,6 +58,13 @@ export function setHighScores(scores) {
     return {
         type: SET_HIGH_SCORES,
         payload: scores
+    }
+}
+
+export function setMoleSpeed(speed) {
+    return {
+        type: SET_MOLE_SPEED,
+        payload: speed
     }
 }
 

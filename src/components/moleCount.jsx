@@ -6,19 +6,31 @@ class MoleCount extends Component {
     constructor() {
         super();
         this.state = {
-            moleCount: 3
+            moleCount: 9,
+            errorMessage: null
         }
     }
 
-    handleMoleCountChange = (number) => {
-        this.setState({moleCount: number, errorMessage: null});
-        this.props.setNumberOfMoles(parseInt(number, 10));
+    isWholeNumber = (input) => {
+        if (input % 1 === 0 && input !== 0) {
+          return true;
+        } 
+        return false;
+    }
+
+    handleMoleCountChange = (input) => {
+        if (!this.isWholeNumber(input)) {
+            this.setState({errorMessage: 'This field must be a whole number'});
+        } else {
+            this.setState({moleCount: input, errorMessage: null});
+            this.props.setNumberOfMoles(parseInt(input, 10));
+        }
     }
 
     render() {
         return (
             <div className={`mole-count ${this.props.timerRunning ? 'hide' : 'show'}`}>
-                <span className="error">{this.state.errorMessage}</span><br />
+                <span className="error-message">{this.state.errorMessage}</span><br />
                 Enter number of moles: <input className="mole-count-input" value={this.state.moleCount} onChange={event => this.handleMoleCountChange(event.target.value)} />
             </div>
         );
