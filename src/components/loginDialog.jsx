@@ -9,9 +9,9 @@ class LoginDialog extends Component {
         this.state = {
             userName: '',
             password: '',
+            confirmPassword: '',
             errorMessage: null,
             createNewUser: false,
-            userLogin: true
         }
     }
 
@@ -25,22 +25,27 @@ class LoginDialog extends Component {
         }
     }
 
-    createNewUser = () => {
-        const url = 'http://localhost:8000/user';
-        const data = {
-            "userName": this.state.userName,
-            "password": this.state.password
-        };
-        return fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': "application/json; charset=utf-8"
-            },
-            body: JSON.stringify(data)
-        })
-        .then(results => results.json())
-        .then(results => console.log(results));
+    handleCreateNewUser = () => {
+        if(this.state.password !== this.state.confirmPassword) {
+            this.setState({errorMessage: 'Passwords do not match'});
+        } else {
+            const url = 'http://localhost:8000/user';
+            const data = {
+                "userName": this.state.userName,
+                "password": this.state.password
+            };
+            return fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(result => result.json())
+            .then(result => this.handleValidUser(result.userName))
+            .catch(error => console.log(error));
+        }
     }
 
     handleValidUser = (userName) => {
@@ -55,9 +60,58 @@ class LoginDialog extends Component {
         .catch(error => this.setState({errorMessage: 'Invalid User Credentials'}));
     }
 
+    switchToCreateUser = () => {
+        this.setState({createNewUser: true})
+    }
+
+    renderCreateUser = () => {
+        return (
+            <React.Fragment>
+                <Modal.Header>
+                    <Modal.Title>
+                        Create New User
+                    </Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <span className="error-message">{this.state.errorMessage}</span>
+                    <FormGroup>
+                        <FormControl ref="name"
+                                id="name"
+                                placeholder="User Name"
+                                onKeyDown={this.detectEnterKeyPress}
+                                onChange={(event) => this.handleInput('userName', event.target.value)}
+                                value={this.state.userName} />
+                        <br />
+                        <FormControl ref="password"
+                                id="password"
+                                type="password"
+                                placeholder="Password"
+                                onKeyDown={this.detectEnterKeyPress}
+                                onChange={(event) => this.handleInput('password', event.target.value)}
+                                value={this.state.password} />
+                                <br />
+                        <FormControl ref="confirmPassword"
+                                id="confirmPassword"
+                                type="password"
+                                placeholder="Confirm Password"
+                                onKeyDown={this.detectEnterKeyPress}
+                                onChange={(event) => this.handleInput('confirmPassword', event.target.value)}
+                                value={this.state.confirmPassword} />
+                    </FormGroup>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.handleCreateNewUser}
+                            bsSize="sm"
+                            bsStyle="primary">Submit</Button>
+                </Modal.Footer>
+            </React.Fragment>
+        )
+    }
+
     renderUserLogin = () => {
         return (
-            <div>
+            <React.Fragment>
                 <Modal.Header>
                     <Modal.Title>
                         Login
@@ -83,14 +137,15 @@ class LoginDialog extends Component {
                                 value={this.state.password} />
                     </FormGroup>
                 </Modal.Body>
-
                 <Modal.Footer>
+                    <Button onClick={this.switchToCreateUser}
+                            bsSize="sm"
+                            bsStyle="secondary">Create New User</Button>
                     <Button onClick={this.handleSubmit}
                             bsSize="sm"
                             bsStyle="primary">Submit</Button>
                 </Modal.Footer>
-            </div>
-           
+            </React.Fragment>
         )
     }
 
@@ -99,7 +154,7 @@ class LoginDialog extends Component {
             <Modal show={!this.props.validUser}
                    bsSize="small"
                    onHide={this.handleClose}>
-                {this.renderUserLogin()}
+                {this.state.createNewUser ? this.renderCreateUser() : this.renderUserLogin()}
             </Modal>
         );
     }
