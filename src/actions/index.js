@@ -96,35 +96,40 @@ export function resetClickCount() {
 }
 
 export function saveScore(userName, score) {
-    return function action(dispatch) {
+    return async function action(dispatch) {
         dispatch({type: SAVING_SCORE});
         const url = 'http://localhost:8000/scores';
         const payloadData = {
             userName,
             score
         };
-        return fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': "application/json; charset=utf-8"
-            },
-            body: JSON.stringify(payloadData)
-        })
-        .then(() => {
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(payloadData)
+            });
             dispatch({type: SCORE_SAVED_SUCCESSFULLY});
-        })
-        .then(() => dispatch(getHighScores()));
+            dispatch(getHighScores());
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
 export function getHighScores() {
-    return function action(dispatch) {
+    return async function action(dispatch) {
         dispatch({type: FETCHING_HIGH_SCORES});
-
-        return fetch('http://localhost:8000/scores')
-        .then(results => results.json())
-        .then(results => dispatch(setHighScores(results)))
-        .then(() => dispatch({type: HIGH_SCORES_FETCHED_SUCCESSFULLY}));
+        try {
+            const results = await fetch('http://localhost:8000/scores');
+            const parsedResults = await results.json();
+            dispatch(setHighScores(parsedResults));
+            dispatch({type: HIGH_SCORES_FETCHED_SUCCESSFULLY});
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

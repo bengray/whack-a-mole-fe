@@ -25,26 +25,30 @@ class LoginDialog extends Component {
         }
     }
 
-    handleCreateNewUser = () => {
+    handleCreateNewUser = async () => {
         if(this.state.password !== this.state.confirmPassword) {
             this.setState({errorMessage: 'Passwords do not match'});
         } else {
-            const url = 'http://localhost:8000/user';
-            const data = {
-                "userName": this.state.userName,
-                "password": this.state.password
-            };
-            return fetch(url, {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': "application/json; charset=utf-8"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(result => result.json())
-            .then(result => this.handleValidUser(result.userName))
-            .catch(error => console.log(error));
+            try {
+                const url = 'http://localhost:8000/user';
+                const data = {
+                    "userName": this.state.userName,
+                    "password": this.state.password
+                };
+                const result = await fetch(url, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': "application/json; charset=utf-8"
+                    },
+                    body: JSON.stringify(data)
+                });
+                const parsedResult = await result.json();
+                this.handleValidUser(parsedResult.userName);
+
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
@@ -54,11 +58,15 @@ class LoginDialog extends Component {
         document.cookie = `validUser=${userName}`;
     }
 
-    handleSubmit = () => {
-        fetch(`http://localhost:8000/user?userName=${this.state.userName}&password=${this.state.password}`)
-        .then(result => result.json())
-        .then(result => this.handleValidUser(result.userName))
-        .catch(error => this.setState({errorMessage: 'Invalid User Credentials'}));
+    handleSubmit = async () => {
+        try {
+            const result = await fetch(`http://localhost:8000/user?userName=${this.state.userName}&password=${this.state.password}`);
+            const parsedResult = await result.json();
+            this.handleValidUser(parsedResult.userName);
+        } catch (error) {
+            console.log(error);
+            this.setState({errorMessage: 'Invalid User Credentials'});
+        }
     }
 
     switchToCreateUser = () => {
