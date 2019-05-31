@@ -57,7 +57,7 @@ class Timer extends Component {
     render() {
         return (
             <div className='timer-section'>
-                <button className={this.props.timerRunning ? 'hide' : 'show'} onClick={() => this.handleButtonClick()}>{this.state.buttonText}</button>
+                <button className={`start-button ${this.props.timerRunning ? 'hide' : 'show'}`} onClick={() => this.handleButtonClick()}>{this.state.buttonText}</button>
                 <p>
                     Seconds remaining: {this.state.seconds}
                 </p>

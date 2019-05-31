@@ -29,6 +29,10 @@ span.logout {
     font-size: 14px;
 }
 
+.start-button {
+    font-size: 30px;
+}
+
 .click-count {
     font-size: 24px;
     display: flex;

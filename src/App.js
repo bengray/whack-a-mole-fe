@@ -31,16 +31,17 @@ class App extends Component {
                     </p>
                     </div>
                     <div className="click-count">
-                        Score: {this.props.clickCount}
+                        Your score: {this.props.clickCount}
                     </div>
                 </div>
                 <HighScores />
-                <Timer />
                 <div className="game-body">
                     <MoleCount />
                     <MoleSpeed />
                     <Moles />                    
                 </div>
+                <Timer />
+
                 <LoginDialog />
             </div>
         );
