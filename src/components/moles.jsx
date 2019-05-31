@@ -14,9 +14,9 @@ class Moles extends Component {
         let moles = [];
         for (let i = 0; i < this.props.numberOfMoles; i++) {
             moles.push(
-                <div className='mole-box'>
+                <div key={i} className='mole-box'>
                     <div id={`mole-${i}`} onClick={this.props.incrementCount} className={this.state.showThisMole === i ? 'show' : 'hide'}>
-                        <img className='mole' src='/images/mole.png' />
+                        <img className='mole' src='/images/mole.png' alt='' />
                     </div>
                 </div>
             );

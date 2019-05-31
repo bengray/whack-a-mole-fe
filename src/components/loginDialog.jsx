@@ -149,8 +149,7 @@ class LoginDialog extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.switchToCreateUser}
-                            bsSize="sm"
-                            bsStyle="secondary">Create New User</Button>
+                            bsSize="sm">Create New User</Button>
                     <Button onClick={this.handleSubmit}
                             bsSize="sm"
                             bsStyle="primary">Login</Button>

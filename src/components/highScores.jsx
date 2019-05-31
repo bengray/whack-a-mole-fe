@@ -8,7 +8,7 @@ class MoleCount extends Component {
             let display = [];
             for(let i=0 ; i < this.props.highScores.length ; i++) {
                 display.push(
-                    <div className="score-item">
+                    <div key={i} className="score-item">
                         <div>
                             {this.props.highScores[i].userName}:&nbsp;
                         </div>

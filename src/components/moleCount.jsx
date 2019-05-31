@@ -12,7 +12,7 @@ class MoleCount extends Component {
     }
 
     isWholeNumber = (input) => {
-        if (input != '0' && input % 1 === 0) {
+        if (input !== '0' && input % 1 === 0) {
             return true;
         }
         return false;
