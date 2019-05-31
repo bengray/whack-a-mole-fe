@@ -104,7 +104,7 @@ class LoginDialog extends Component {
                     <span className="cancel-create-user" onClick={() => this.setState({createNewUser: false})}>Cancel</span>
                     <Button onClick={this.handleCreateNewUser}
                             bsSize="sm"
-                            bsStyle="primary">Submit</Button>
+                            bsStyle="primary">Create and Login</Button>
                 </Modal.Footer>
             </React.Fragment>
         )
@@ -144,7 +144,7 @@ class LoginDialog extends Component {
                             bsStyle="secondary">Create New User</Button>
                     <Button onClick={this.handleSubmit}
                             bsSize="sm"
-                            bsStyle="primary">Submit</Button>
+                            bsStyle="primary">Login</Button>
                 </Modal.Footer>
             </React.Fragment>
         )
