@@ -133,3 +133,29 @@ export function getHighScores() {
         }
     }
 }
+
+export function createNewUser(userName, password) {
+    return async function action(dispatch) {
+        try {
+            const url = 'http://localhost:8000/user';
+            const data = {
+                "userName": userName,
+                "password": password
+            };
+            const result = await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(data)
+            });
+            const parsedResult = await result.json();
+            dispatch(setValidUser(parsedResult.userName));
+            dispatch(setUserName(parsedResult.userName));
+            document.cookie = `validUser=${userName}`;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}

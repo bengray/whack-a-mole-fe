@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button, FormGroup, FormControl } from 'react-bootstrap';
-import { setValidUser, setUserName } from '../actions/index';
+import { setValidUser, setUserName, createNewUser } from '../actions/index';
 
 class LoginDialog extends Component {
     constructor(props) {
@@ -25,30 +25,11 @@ class LoginDialog extends Component {
         }
     }
 
-    handleCreateNewUser = async () => {
+    handleCreateNewUser = () => {
         if(this.state.password !== this.state.confirmPassword) {
             this.setState({errorMessage: 'Passwords do not match'});
         } else {
-            try {
-                const url = 'http://localhost:8000/user';
-                const data = {
-                    "userName": this.state.userName,
-                    "password": this.state.password
-                };
-                const result = await fetch(url, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': "application/json; charset=utf-8"
-                    },
-                    body: JSON.stringify(data)
-                });
-                const parsedResult = await result.json();
-                this.handleValidUser(parsedResult.userName);
-
-            } catch (error) {
-                console.log(error);
-            }
+            this.props.createNewUser(this.state.userName, this.state.password);
         }
     }
 
@@ -182,7 +163,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setValidUser: (userName) => dispatch(setValidUser(userName)),
-        setUserName: (userName) => dispatch(setUserName(userName))
+        setUserName: (userName) => dispatch(setUserName(userName)),
+        createNewUser: (userName, password) => dispatch(createNewUser(userName, password))
     };
 };
 
