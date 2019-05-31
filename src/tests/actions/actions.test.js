@@ -5,7 +5,6 @@ import {
     setNumberOfMoles,
     setUserName,
     setValidUser,
-    logout,
     setHighScores,
     setMoleSpeed,
     resetClickCount
