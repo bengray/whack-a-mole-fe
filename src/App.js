@@ -6,13 +6,14 @@ import MoleCount from './components/moleCount';
 import LoginDialog from './components/loginDialog';
 import HighScores from './components/highScores';
 import MoleSpeed from './components/moleSpeed';
-import { getHighScores, logout } from './actions/index';
+import { getHighScores, logout, checkForLoggedInUser } from './actions/index';
 import { connect } from 'react-redux';
 
 class App extends Component {
 
     componentDidMount() {
         this.props.getHighScores();
+        this.props.checkForLoggedInUser();
     }
 
     render() {
@@ -58,7 +59,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getHighScores: () => dispatch(getHighScores()),
-        logout: () => dispatch(logout())
+        logout: () => dispatch(logout()),
+        checkForLoggedInUser: () => dispatch(checkForLoggedInUser())
     };
 };
 

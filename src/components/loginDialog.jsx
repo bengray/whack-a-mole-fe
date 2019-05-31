@@ -11,7 +11,7 @@ class LoginDialog extends Component {
             password: '',
             confirmPassword: '',
             errorMessage: null,
-            createNewUser: false,
+            createNewUser: false
         }
     }
 
@@ -51,6 +51,7 @@ class LoginDialog extends Component {
     handleValidUser = (userName) => {
         this.props.setValidUser(userName);
         this.props.setUserName(userName);
+        document.cookie = `validUser=${userName}`;
     }
 
     handleSubmit = () => {
@@ -66,7 +67,7 @@ class LoginDialog extends Component {
 
     renderCreateUser = () => {
         return (
-            <React.Fragment>
+            <div className="modal-contents">
                 <Modal.Header>
                     <Modal.Title>
                         Create New User
@@ -106,16 +107,16 @@ class LoginDialog extends Component {
                             bsSize="sm"
                             bsStyle="primary">Create and Login</Button>
                 </Modal.Footer>
-            </React.Fragment>
+            </div>
         )
     }
 
     renderUserLogin = () => {
         return (
-            <React.Fragment>
+            <div className="modal-contents">
                 <Modal.Header>
                     <Modal.Title>
-                        Login
+                        Whack-a-mole Login
                     </Modal.Title>
                 </Modal.Header>
 
@@ -146,16 +147,19 @@ class LoginDialog extends Component {
                             bsSize="sm"
                             bsStyle="primary">Login</Button>
                 </Modal.Footer>
-            </React.Fragment>
+            </div>
         )
     }
 
     render() {
         return (
             <Modal show={!this.props.validUser}
-                   bsSize="small"
-                   onHide={this.handleClose}
-                   backdropClassName="opaque-backdrop">
+                   bsSize="large"
+                   backdrop={false}
+                   dialogClassName="custom-modal"
+                   bsClass="my-modal"
+                   animation={false}
+            >
                 {this.state.createNewUser ? this.renderCreateUser() : this.renderUserLogin()}
             </Modal>
         );

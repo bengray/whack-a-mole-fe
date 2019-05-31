@@ -55,8 +55,6 @@ describe('actions', () => {
     });
 
     it('should create an action that logs out the user', () => {
-        window.location.reload = jest.fn();
-
         expect(logout()).toEqual({
             type: 'SET_INVALID_USER'
         });

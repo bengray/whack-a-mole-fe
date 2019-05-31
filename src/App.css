@@ -119,7 +119,15 @@ img.mole {
     cursor: pointer;
 }
 
-.opaque-backdrop {
-    opacity: 1 !important;
-    background-color: gray;
+.custom-modal {
+    position: absolute;
+    background: white;
+    top: 0;
+    width: 100VW;
+    height: 100VH;
+}
+
+.modal-contents {
+    width: 300px;
+    margin: 0 auto 0;
 }

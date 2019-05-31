@@ -56,7 +56,18 @@ export function setValidUser(userName) {
     }
 }
 
+export function checkForLoggedInUser() {
+    var userName = document.cookie.replace(/(?:(?:^|.*;\s*)validUser\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    return function action(dispatch) {
+        if(userName) {
+            dispatch(setValidUser(userName));
+            dispatch(setUserName(userName));
+        }
+    }
+}
+
 export function logout() {
+    document.cookie = "validUser=; expires=0";
     window.location.reload();
     return {
         type: SET_INVALID_USER
