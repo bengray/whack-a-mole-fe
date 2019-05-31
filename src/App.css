@@ -100,9 +100,12 @@ img.mole {
     display: flex;
     flex-direction: column;
     padding: 0 25px 25px;
-    border: 1px solid black;
-    width: 200px;
+    border: 2px solid lightblue;
+    width: 210px;
     position: absolute;
+    top: 200px;
+    background-color: lightskyblue;
+    border-radius: 0 15px 15px 0;
 }
 
 .score-item {

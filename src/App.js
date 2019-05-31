@@ -31,7 +31,7 @@ class App extends Component {
                         Click the START button to begin!
                     </p>
                     </div>
-                    <div className="click-count">
+                    <div className={`click-count ${this.props.timerRunning ? 'show' : 'hide'}`}>
                         Your score: {this.props.clickCount}
                     </div>
                 </div>
@@ -52,7 +52,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         clickCount: state.clickCount,
-        userName: state.userName
+        userName: state.userName,
+        timerRunning: state.timerRunning
     };
 };
 

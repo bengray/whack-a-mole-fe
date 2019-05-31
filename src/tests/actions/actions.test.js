@@ -54,12 +54,6 @@ describe('actions', () => {
         });
     });
 
-    it('should create an action that logs out the user', () => {
-        expect(logout()).toEqual({
-            type: 'SET_INVALID_USER'
-        });
-    });
-
     it('should create an action that sets high scores', () => {
         expect(setHighScores([
             {'score': 72, 'userName': 'Gollum'}

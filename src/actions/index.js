@@ -68,9 +68,10 @@ export function checkForLoggedInUser() {
 
 export function logout() {
     document.cookie = "validUser=; expires=0";
-    window.location.reload();
-    return {
-        type: SET_INVALID_USER
+    return function action(dispatch) {
+        dispatch({type: SET_INVALID_USER});
+        dispatch(setUserName(''));
+        window.location.reload();
     }
 }
 
