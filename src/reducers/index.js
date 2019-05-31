@@ -6,6 +6,7 @@ import { numberOfMoles } from './numberOfMoles';
 import { userName } from './userName';
 import { highScores } from './highScores';
 import { moleSpeed } from './moleSpeed';
+import { loginErrorMessage } from './loginErrorMessage';
 
 export default combineReducers({
     validUser,
@@ -14,5 +15,6 @@ export default combineReducers({
     numberOfMoles,
     userName,
     highScores,
-    moleSpeed
+    moleSpeed,
+    loginErrorMessage
 });

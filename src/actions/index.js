@@ -12,7 +12,8 @@ import {
     FETCHING_HIGH_SCORES,
     HIGH_SCORES_FETCHED_SUCCESSFULLY,
     RESET_CLICK_COUNT,
-    SET_INVALID_USER
+    SET_INVALID_USER,
+    SET_LOGIN_ERROR_MESSAGE
 } from '../constants/index';
 
 export function startTimer() {
@@ -156,6 +157,28 @@ export function createNewUser(userName, password) {
             document.cookie = `validUser=${userName}`;
         } catch (error) {
             console.log(error);
+        }
+    }
+}
+
+export function setLoginErrorMessage(message) {
+    return {
+        type: SET_LOGIN_ERROR_MESSAGE,
+        payload: message
+    }
+}
+
+export function userLogin(userName, password) {
+    return async function action(dispatch) {
+        try {
+            const result = await fetch(`http://localhost:8000/user?userName=${userName}&password=${password}`);
+            const parsedResult = await result.json();
+            dispatch(setValidUser(parsedResult.userName));
+            dispatch(setUserName(parsedResult.userName));
+            document.cookie = `validUser=${parsedResult.userName}`;
+        } catch (error) {
+            console.log(error);
+            dispatch(setLoginErrorMessage('Invalid Credentials'));
         }
     }
 }

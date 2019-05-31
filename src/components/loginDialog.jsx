@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button, FormGroup, FormControl } from 'react-bootstrap';
-import { setValidUser, setUserName, createNewUser } from '../actions/index';
+import { setLoginErrorMessage, createNewUser, userLogin } from '../actions/index';
 
 class LoginDialog extends Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class LoginDialog extends Component {
     }
 
     handleInput = (field, value) => {
+        this.props.setLoginErrorMessage(null);
         this.setState({[field]: value, errorMessage: null});
     }
 
@@ -33,21 +34,8 @@ class LoginDialog extends Component {
         }
     }
 
-    handleValidUser = (userName) => {
-        this.props.setValidUser(userName);
-        this.props.setUserName(userName);
-        document.cookie = `validUser=${userName}`;
-    }
-
-    handleSubmit = async () => {
-        try {
-            const result = await fetch(`http://localhost:8000/user?userName=${this.state.userName}&password=${this.state.password}`);
-            const parsedResult = await result.json();
-            this.handleValidUser(parsedResult.userName);
-        } catch (error) {
-            console.log(error);
-            this.setState({errorMessage: 'Invalid User Credentials'});
-        }
+    handleSubmit = () => {
+        this.props.userLogin(this.state.userName, this.state.password);
     }
 
     switchToCreateUser = () => {
@@ -110,7 +98,7 @@ class LoginDialog extends Component {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <span className="error-message">{this.state.errorMessage}</span>
+                    <span className="error-message">{this.props.loginErrorMessage}</span>
                     <FormGroup>
                         <FormControl ref="name"
                                 id="name"
@@ -157,14 +145,15 @@ class LoginDialog extends Component {
 const mapStateToProps = (state) => {
     return {
         validUser: state.validUser,
+        loginErrorMessage: state.loginErrorMessage
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setValidUser: (userName) => dispatch(setValidUser(userName)),
-        setUserName: (userName) => dispatch(setUserName(userName)),
-        createNewUser: (userName, password) => dispatch(createNewUser(userName, password))
+        createNewUser: (userName, password) => dispatch(createNewUser(userName, password)),
+        userLogin: (userName, password) => dispatch(userLogin(userName, password)),
+        setLoginErrorMessage: (message) => dispatch(setLoginErrorMessage(message))
     };
 };
 
