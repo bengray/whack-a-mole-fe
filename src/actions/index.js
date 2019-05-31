@@ -57,6 +57,7 @@ export function setValidUser(userName) {
 }
 
 export function logout() {
+    window.location.reload();
     return {
         type: SET_INVALID_USER
     }
