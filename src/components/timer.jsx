@@ -5,6 +5,7 @@ import {
     stopTimer,
     saveScore,
     resetClickCount } from '../actions/index';
+import { Button } from 'react-bootstrap';
 
 class Timer extends Component {
     constructor(props) {
@@ -57,7 +58,7 @@ class Timer extends Component {
     render() {
         return (
             <div className='timer-section'>
-                <button className={`start-button ${this.props.timerRunning ? 'hide' : 'show'}`} onClick={() => this.handleButtonClick()}>{this.state.buttonText}</button>
+                <Button className={`start-button ${this.props.timerRunning ? 'hide' : 'show'}`} onClick={() => this.handleButtonClick()}>{this.state.buttonText}</Button>
                 <p>
                     Seconds remaining: {this.state.seconds}
                 </p>

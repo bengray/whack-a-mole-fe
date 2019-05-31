@@ -8,6 +8,8 @@ import HighScores from './components/highScores';
 import MoleSpeed from './components/moleSpeed';
 import { getHighScores, logout, checkForLoggedInUser } from './actions/index';
 import { connect } from 'react-redux';
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class App extends Component {
 
@@ -24,14 +26,14 @@ class App extends Component {
                     <div className="welcome">
                         Logged in as: {this.props.userName}
                         <br /><br />
-                        <span className="logout" onClick={this.props.logout}>logout</span>
+                        <span className="logout" onClick={this.props.logout}>logout &nbsp; <FontAwesomeIcon icon={faSignOutAlt} /></span>
                     </div>
                     <h2>Whack a mole</h2>
                     <p>
                         Click the START button to begin!
                     </p>
                     </div>
-                    <div className={`click-count ${this.props.timerRunning ? 'show' : 'hide'}`}>
+                    <div className="click-count">
                         Your score: {this.props.clickCount}
                     </div>
                 </div>
@@ -52,8 +54,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         clickCount: state.clickCount,
-        userName: state.userName,
-        timerRunning: state.timerRunning
+        userName: state.userName
     };
 };
 
