@@ -101,6 +101,7 @@ class LoginDialog extends Component {
                     </FormGroup>
                 </Modal.Body>
                 <Modal.Footer>
+                    <span className="cancel-create-user" onClick={() => this.setState({createNewUser: false})}>Cancel</span>
                     <Button onClick={this.handleCreateNewUser}
                             bsSize="sm"
                             bsStyle="primary">Submit</Button>
@@ -153,7 +154,8 @@ class LoginDialog extends Component {
         return (
             <Modal show={!this.props.validUser}
                    bsSize="small"
-                   onHide={this.handleClose}>
+                   onHide={this.handleClose}
+                   backdropClassName="opaque-backdrop">
                 {this.state.createNewUser ? this.renderCreateUser() : this.renderUserLogin()}
             </Modal>
         );

@@ -16,6 +16,19 @@
     flex-direction: column;
 }
 
+.welcome {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    font-size: 18px;
+    text-align: left;
+}
+
+span.logout {
+    cursor: pointer;
+    font-size: 14px;
+}
+
 .click-count {
     font-size: 24px;
     display: flex;
@@ -95,4 +108,14 @@ img.mole {
 .error-message {
     color: red;
     font-weight: bold;
+}
+
+.cancel-create-user {
+    float: left;
+    cursor: pointer;
+}
+
+.opaque-backdrop {
+    opacity: 1 !important;
+    background-color: gray;
 }

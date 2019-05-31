@@ -1,4 +1,5 @@
 export const SET_VALID_USER = "SET_VALID_USER";
+export const SET_INVALID_USER = "SET_INVALID_USER";
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const START_TIMER = "START_TIMER";

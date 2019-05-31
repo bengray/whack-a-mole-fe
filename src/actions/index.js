@@ -11,7 +11,8 @@ import {
     SAVING_SCORE,
     FETCHING_HIGH_SCORES,
     HIGH_SCORES_FETCHED_SUCCESSFULLY,
-    RESET_CLICK_COUNT
+    RESET_CLICK_COUNT,
+    SET_INVALID_USER
 } from '../constants/index';
 
 export function startTimer() {
@@ -52,6 +53,12 @@ export function setValidUser(userName) {
     return {
         type: SET_VALID_USER,
         payload: userName
+    }
+}
+
+export function logout() {
+    return {
+        type: SET_INVALID_USER
     }
 }
 
