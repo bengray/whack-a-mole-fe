@@ -33,7 +33,7 @@ class MoleCount extends Component {
         return (
             <div className={`mole-count ${this.props.timerRunning ? 'hide' : 'show'}`}>
                 <span className="error-message">{this.state.errorMessage}</span><br />
-                Select number of moles: <input className="mole-count-input" value={this.state.moleCount} onChange={event => this.handleMoleCountChange(event.target.value)} />
+                Enter number of moles: <input className="mole-count-input" value={this.state.moleCount} onChange={event => this.handleMoleCountChange(event.target.value)} />
             </div>
         );
     }
