@@ -38,13 +38,14 @@ class App extends Component {
                     </div>
                 </div>
                 <HighScores />
-                <div className="game-body">
+                <div className="game-settings">
                     <MoleCount />
                     <MoleSpeed />
+                </div>
+                <div className="game-body">
                     <Moles />                    
                 </div>
                 <Timer />
-
                 <LoginDialog />
             </div>
         );

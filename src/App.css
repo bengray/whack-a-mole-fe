@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap');
+
+body {
+    background: url('assets/hills.png') top no-repeat;
+}
+
 .App {
     text-align: center;
+}
+
+.App h2 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 50px;
 }
 
 .App-header {
@@ -35,8 +46,16 @@ span.logout {
 
 .click-count {
     font-size: 24px;
+    position: absolute;
     display: flex;
     justify-content: center;
+    background: url('assets/board.png') top center no-repeat;
+    width: 220px;
+    height: 100px;
+    background-size: contain;
+    padding-top: 38px;
+    color: white;
+    font-weight: bold;
 }
 
 .game-body {
@@ -64,6 +83,14 @@ span.logout {
     justify-content: center;
 }
 
+.game-settings {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto 0;
+    width: 550px;
+    align-items: center;
+}
+
 .show {
     display: block;
 }
@@ -77,14 +104,14 @@ img.mole {
 }
 
 .moles-row {
-    background-color: lightgreen;
+    background-image: url('assets/grass.png');
     border-radius: 1.5px;
     display: grid;
     grid-template-columns: 130px 130px 130px 130px;
     grid-template-rows: 100px; 
     grid-column-gap: 15px;
     grid-row-gap: 15px;
-  }
+}
 
 .mole-box {
     width: 100px;
@@ -100,12 +127,13 @@ img.mole {
     display: flex;
     flex-direction: column;
     padding: 0 25px 25px;
-    border: 2px solid lightblue;
+    border: 2px solid slategray;
     width: 210px;
     position: absolute;
-    top: 200px;
-    background-color: lightskyblue;
+    top: 300px;
+    background-color: lightslategray;
     border-radius: 0 15px 15px 0;
+    color: white;
 }
 
 .score-item {
@@ -124,8 +152,7 @@ img.mole {
 
 .custom-modal {
     position: absolute;
-    background: white;
-    top: 0;
+    background: url('assets/hills.png') top no-repeat;    top: 0;
     width: 100VW;
     height: 100VH;
 }
@@ -133,4 +160,25 @@ img.mole {
 .modal-contents {
     width: 300px;
     margin: 0 auto 0;
+}
+
+.modal-body {
+    background: white;
+}
+
+.modal-header {
+    background: white;
+}
+
+h4.modal-title {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.modal-footer {
+    background: white;
+    border-radius: 0 0 5px 5px;
 }

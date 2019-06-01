@@ -93,7 +93,7 @@ class LoginDialog extends Component {
             <div className="modal-contents">
                 <Modal.Header>
                     <Modal.Title>
-                        Whack-a-mole Login
+                        Whack-a-mole
                     </Modal.Title>
                 </Modal.Header>
 

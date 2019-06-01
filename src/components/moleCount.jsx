@@ -20,7 +20,7 @@ class MoleCount extends Component {
 
     handleMoleCountChange = (input) => {
         if (!this.isWholeNumber(input)) {
-            this.setState({errorMessage: 'This field must be a non-zero whole number'});
+            this.setState({errorMessage: 'Must be a non-zero whole number'});
         } else if (input > 20) {
             this.setState({errorMessage: 'Don\'t be a hero, 20 or less'});
         } else {
