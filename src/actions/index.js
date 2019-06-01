@@ -99,7 +99,7 @@ export function resetClickCount() {
 export function saveScore(userName, score) {
     return async function action(dispatch) {
         dispatch({type: SAVING_SCORE});
-        const url = 'http://demo-api.bendoylegray.com:8000/scores';
+        const url = 'http://157.230.230.142/scores';
         const payloadData = {
             userName,
             score
@@ -125,7 +125,7 @@ export function getHighScores() {
     return async function action(dispatch) {
         dispatch({type: FETCHING_HIGH_SCORES});
         try {
-            const results = await fetch('http://demo-api.bendoylegray.com:8000/scores');
+            const results = await fetch('http://157.230.230.142/scores');
             const parsedResults = await results.json();
             dispatch(setHighScores(parsedResults));
             dispatch({type: HIGH_SCORES_FETCHED_SUCCESSFULLY});
@@ -138,7 +138,7 @@ export function getHighScores() {
 export function createNewUser(userName, password) {
     return async function action(dispatch) {
         try {
-            const url = 'http://demo-api.bendoylegray.com:8000/user';
+            const url = 'http://157.230.230.142/user';
             const data = {
                 "userName": userName,
                 "password": password
@@ -171,7 +171,7 @@ export function setLoginErrorMessage(message) {
 export function userLogin(userName, password) {
     return async function action(dispatch) {
         try {
-            const result = await fetch(`http://demo-api.bendoylegray.com:8000/user?userName=${userName}&password=${password}`);
+            const result = await fetch(`http://157.230.230.142/user?userName=${userName}&password=${password}`);
             const parsedResult = await result.json();
             dispatch(setValidUser(parsedResult.userName));
             dispatch(setUserName(parsedResult.userName));
