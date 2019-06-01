@@ -53,6 +53,7 @@ class LoginDialog extends Component {
 
                 <Modal.Body>
                     <span className="error-message">{this.state.errorMessage}</span>
+                    <span className="error-message">{this.props.loginErrorMessage}</span>
                     <FormGroup>
                         <FormControl ref="name"
                                 id="name"
