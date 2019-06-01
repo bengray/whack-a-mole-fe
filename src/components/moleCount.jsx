@@ -21,6 +21,8 @@ class MoleCount extends Component {
     handleMoleCountChange = (input) => {
         if (!this.isWholeNumber(input)) {
             this.setState({errorMessage: 'This field must be a non-zero whole number'});
+        } else if (input > 15) {
+            this.setState({errorMessage: 'Don\'t be a hero, pick 15 or less'});
         } else {
             this.setState({moleCount: input, errorMessage: null});
             this.props.setNumberOfMoles(parseInt(input, 10));
@@ -31,7 +33,7 @@ class MoleCount extends Component {
         return (
             <div className={`mole-count ${this.props.timerRunning ? 'hide' : 'show'}`}>
                 <span className="error-message">{this.state.errorMessage}</span><br />
-                Enter number of moles: <input className="mole-count-input" value={this.state.moleCount} onChange={event => this.handleMoleCountChange(event.target.value)} />
+                Select number of moles: <input className="mole-count-input" value={this.state.moleCount} onChange={event => this.handleMoleCountChange(event.target.value)} />
             </div>
         );
     }
