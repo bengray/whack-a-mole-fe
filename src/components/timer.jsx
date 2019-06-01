@@ -4,7 +4,8 @@ import {
     startTimer,
     stopTimer,
     saveScore,
-    resetClickCount } from '../actions/index';
+    resetClickCount,
+    logout } from '../actions/index';
 import { Button } from 'react-bootstrap';
 
 class Timer extends Component {
@@ -48,7 +49,9 @@ class Timer extends Component {
     }
 
     handleButtonClick = () => {
-        if (this.state.seconds === 0 && !this.props.timerRunning) {
+        if (!this.props.validUser) {
+            this.props.logout();
+        } else if (this.state.seconds === 0 && !this.props.timerRunning) {
             this.resetGame();
         } else {
             this.handleStartTimer()
@@ -72,7 +75,8 @@ const mapStateToProps = (state) => {
         timerRunning: state.timerRunning,
         userName: state.userName,
         clickCount: state.clickCount,
-        numberOfMoles: state.numberOfMoles
+        numberOfMoles: state.numberOfMoles,
+        validUser: state.validUser
     };
 };
 
@@ -81,7 +85,8 @@ const mapDispatchToProps = (dispatch) => {
         startTimer: () => dispatch(startTimer()),
         stopTimer: () => dispatch(stopTimer()),
         saveScore: (userName, score) => dispatch(saveScore(userName, score)),
-        resetClickCount: () => dispatch(resetClickCount())
+        resetClickCount: () => dispatch(resetClickCount()),
+        logout: () => dispatch(logout())
     };
 };
 
