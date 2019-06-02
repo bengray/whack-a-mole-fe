@@ -21,14 +21,19 @@ class LoginDialog extends Component {
     }
 
     detectEnterKeyPress = (event) => {
-        if(event.keyCode === 13) {
+        if(event.keyCode === 13 && !this.state.createNewUser) {
             this.handleSubmit();
+        }
+        if(event.keyCode === 13 && this.state.createNewUser) {
+            this.handleCreateNewUser();
         }
     }
 
     handleCreateNewUser = () => {
         if(this.state.password !== this.state.confirmPassword) {
             this.setState({errorMessage: 'Passwords do not match'});
+        } else if (!this.state.password) {
+            this.setState({errorMessage: 'A password is required'});
         } else {
             this.props.createNewUser(this.state.userName, this.state.password);
         }
