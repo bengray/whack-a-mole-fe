@@ -157,6 +157,7 @@ export function createNewUser(userName, password) {
             document.cookie = `validUser=${userName}`;
         } catch (error) {
             console.log(error);
+            dispatch(setLoginErrorMessage('Username already exists'));
         }
     }
 }
