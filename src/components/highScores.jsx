@@ -2,28 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class MoleCount extends Component {
-
-    render() {
-        const renderScores = () => {
-            let display = [];
-            this.props.highScores.map((highScore, index) => {
-                display.push(
-                    <div key={`highscore-${index}`} className="score-item">
-                        <div>
-                            {highScore.userName}:&nbsp;
-                        </div>
-                        <div>
-                            {highScore.score}    
-                        </div>
+    renderScores = () => {
+        let highScores = [];
+        this.props.highScores.map((highScore, index) => {
+            highScores.push(
+                <div key={`highscore-${index}`} className="score-item">
+                    <div>
+                        {highScore.userName}:&nbsp;
                     </div>
-                )
-            });
-            return display;
-        }
+                    <div>
+                        {highScore.score}    
+                    </div>
+                </div>
+            )
+        });
+        return highScores;
+    }
+    render() {
         return (
             <div className="score-box">
                 <h3>Top 5 Scores:</h3>
-                {renderScores()}
+                {this.renderScores()}
             </div>
         );
     }
