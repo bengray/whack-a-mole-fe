@@ -6,19 +6,18 @@ class MoleCount extends Component {
     render() {
         const renderScores = () => {
             let display = [];
-            for(let i=0 ; i < this.props.highScores.length ; i++) {
+            this.props.highScores.map((highScore, index) => {
                 display.push(
-                    <div key={i} className="score-item">
+                    <div key={`highscore-${index}`} className="score-item">
                         <div>
-                            {this.props.highScores[i].userName}:&nbsp;
+                            {highScore.userName}:&nbsp;
                         </div>
                         <div>
-                            {this.props.highScores[i].score}    
+                            {highScore.score}    
                         </div>
                     </div>
-                    
-                );
-            };
+                )
+            });
             return display;
         }
         return (
